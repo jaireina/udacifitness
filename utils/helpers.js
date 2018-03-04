@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import {FontAwesome, MaterialIcons, MaterialCommunityIcons} from '@expo/vector-icons';
+import {View, StyleSheet, Platform} from 'react-native';
+import {FontAwesome, MaterialIcons, MaterialCommunityIcons, Ionicons} from '@expo/vector-icons';
 import {white, red, orange, blue, lightPurp, pink, purple } from './colors';
 
 const styles = StyleSheet.create({
@@ -44,11 +44,20 @@ export function getMetricMetaInfo (metric) {
       getIcon() {
         return (
           <View style={[styles.iconContainer, {backgroundColor:orange}]}>
-            <MaterialCommunityIcons
-              name='bike'
-              color={white}
-              size={32}
-            />
+            {
+              Platform.OS === 'ios'?
+              <Ionicons
+                name='ios-bicycle'
+                color={white}
+                size={32}
+              />:
+              <MaterialCommunityIcons
+                name='bike'
+                color={white}
+                size={32}
+              />
+            }
+            
           </View>
         )
       }
