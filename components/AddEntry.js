@@ -11,6 +11,7 @@ import {removeEntry, submitEntry} from '../utils/api';
 import {connect} from 'react-redux';
 import {addEntry} from '../actions';
 import {white, purple} from '../utils/colors';
+import {NavigationActions} from 'react-navigation';
 
 function SubmitBtn ({onPress}){
   return(
@@ -66,7 +67,7 @@ class AddEntry extends Component{
     
     //Update Redux
     this.props.dispatch(addEntry({
-      [key]: entry
+      [key]: entry 
     }));
     
     this.setState(()=>({
@@ -77,7 +78,7 @@ class AddEntry extends Component{
       eat: 0
     }))
     
-    // Navigate to home
+    this.toHome();
 
     //save to DB
     submitEntry({key, entry});
@@ -92,10 +93,16 @@ class AddEntry extends Component{
       [key]: getDailyReminderValue()
     }));
 
-    //Route to home
+    this.toHome();
 
     //Update DB
     removeEntry({key});
+  }
+
+  toHome = ()=>{
+    this.props.navigation.dispatch(NavigationActions.back({
+      key: 'AddEntry'
+    }))
   }
   render(){
     const metaInfo = getMetricMetaInfo();

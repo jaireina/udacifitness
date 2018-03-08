@@ -26,6 +26,8 @@ import {TabNavigator, StackNavigator, DrawerNavigator} from 'react-navigation';
 import {FontAwesome, Ionicons} from '@expo/vector-icons';
 import {purple, white} from './utils/colors';
 import {Constants} from 'expo';
+import EntryDetail from './components/EntryDetail';
+
 
 function UdaciStatusBar({backgroundColor, ...props}){
   return(
@@ -43,7 +45,7 @@ const Tabs = TabNavigator({
       tabBarIcon: ({tintColor})=> <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
     }
   },
-  Dashboard: {
+  AddEntry: {
     screen: AddEntry,
     navigationOptions:{
       tabBarLabel: 'Add Entry',
@@ -70,6 +72,22 @@ const Tabs = TabNavigator({
   }
 });
 
+
+const MainNavigator = StackNavigator({
+  Home:{
+    screen: Tabs
+  },
+  EntryDetail: {
+    screen: EntryDetail,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {backgroundColor: purple}
+    }
+  }
+},{    
+  // headerMode: 'none',
+});
+
 export default class App extends Component {
   // state = {
   //   value: 0,
@@ -79,6 +97,8 @@ export default class App extends Component {
   // handlePress = ()=>{
   //   alert('hello');
   // }  
+
+
   render() {
     return (
       <Provider store={createStore(reducer)}>
@@ -127,10 +147,11 @@ export default class App extends Component {
           /> */}
 
           {/* <AddEntry /> */}
-
+          {/* <History /> */}
+          
           <UdaciStatusBar backgroundColor={purple} barStyle='light-content'/>
-            {/* <History /> */}
-          <Tabs />
+          <MainNavigator />
+          
         </View>
       </Provider>
     );
