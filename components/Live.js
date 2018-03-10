@@ -104,7 +104,7 @@ export default class Live extends Component{
       );
     }
 
-    return(
+    return( 
       <View style={styles.container}>
         <View style={styles.directionContainer}>
           <Text style={styles.header}>You're heading</Text>
@@ -112,6 +112,11 @@ export default class Live extends Component{
             style={[styles.direction, {transform:[{scale: bounceValue}]}]}>
             {direction}
           </Animated.Text>
+          <TouchableOpacity style={styles.button} onPress={this.askPermission}>
+            <Text style={styles.buttonText}>
+              Enable
+            </Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.metricContainer}>
           <View style={styles.metric}>
