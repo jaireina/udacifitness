@@ -25,6 +25,7 @@ import History from './components/History';
 import {TabNavigator, StackNavigator, DrawerNavigator} from 'react-navigation';
 import {FontAwesome, Ionicons} from '@expo/vector-icons';
 import {purple, white} from './utils/colors';
+import {setLocalNotification} from './utils/helpers';
 import {Constants} from 'expo';
 import EntryDetail from './components/EntryDetail';
 import Live from './components/Live';
@@ -105,6 +106,9 @@ export default class App extends Component {
   //   alert('hello');
   // }  
 
+  componentDidMount(){
+    setLocalNotification();
+  }
 
   render() {
     return (
